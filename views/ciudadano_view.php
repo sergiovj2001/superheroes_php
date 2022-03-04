@@ -29,23 +29,22 @@
             <th>habilidades</th>
         </tr>
         <?php
-        $superheroes = $data[0];
-        var_dump($superheroes);
-        // echo $superheroes['nombre']; 
-        // $habilidades = $data[1];
 
-            foreach ($data as $key => $value) {
+            foreach ($data["superheroes"] as $key => $value) {
                 echo '<tr>';
                 echo '<td>' . $value["nombre"] . '</td>';
                 echo '<td>' . $value['evolucion'] . '</td>';
                 echo '<td>' . $value['imagen'] . '</td>';
-                echo '<td>' . $value['nombre'] . '</td>';
+                foreach ($data["habilidades"][0] as $clave => $valor) {
+                    if ($value["id"] == $valor["id_superheroe"]) {
+                        echo '<td>' . $valor["nombre"] . '</td>';
+                    }
+                }
                 echo '<td>';
                 //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/edit/' . $value['id'] . '"> Edit</a>';
                 //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/del/' . $value['id'] . '"> Del</a>';
                 echo '</td>';
                 echo '</tr>';
-                var_dump($value);
             }
         ?>
     </table>

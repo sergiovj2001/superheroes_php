@@ -154,9 +154,23 @@ namespace App\Models;
             }
             return $this->rows;
         }
-    public function getHabilidades() {
-        $this->query = "SELECT * FROM `superheroes` JOIN superheroes_habilidades JOIN habilidades ON (superheroes_habilidades.id_habilidad = habilidades.id)";
-
+    public function getSuperpoder($id='') {
+        $this->query = "SELECT superheroes_habilidades.id_superheroe, superheroes_habilidades.id ,habilidades.nombre, superheroes_habilidades.valor FROM superheroes_habilidades INNER JOIN habilidades ON superheroes_habilidades.id_habilidad = habilidades.id WHERE superheroes_habilidades.id_superheroe = :id";
+        $this->parametros['id']=$id;
+        $this->get_results_from_query();
+        if (count($this->rows) == 1) {
+            foreach ($this->rows[0] as $propiedad=>$valor) {
+                $this->$propiedad = $valor;
+            }
+            $this->mensaje = 'SH encontrados';
+        } else {
+            $this->mensaje = 'SH no encontrados';
+        }
+        return $this->rows;
+    }
+    public function getHabilidades($id = '') {
+        $this->query = "SELECT * FROM `superheroes_habilidades` WHERE id_superheroe = :id";
+        $this->parametros['id']=$id;
         $this->get_results_from_query();
         if (count($this->rows) == 1) {
             foreach ($this->rows[0] as $propiedad=>$valor) {

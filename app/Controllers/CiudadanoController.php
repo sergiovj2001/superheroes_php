@@ -13,13 +13,17 @@ class CiudadanoController extends BaseController {
     private function getSuperheroes(){
         return Superheroe::getInstancia()->getAll();
     }
-    private function habilidades(){
-        return Superheroe::getInstancia()->getHabilidades();
+
+    private function superpoder($id){
+        return Superheroe::getInstancia()->getSuperpoder($id);
     }
     public function indexAction() {
         $data = [];
-        $data = $this->getSuperheroes();
-        array_push($data, ($this->habilidades()));
+        $data["superheroes"] = $this->getSuperheroes();
+        $data["habilidades"] = [];
+        for ($i=0; $i <count($data["superheroes"]) ; $i++) {
+            array_push($data['habilidades'] ,$this->superpoder($data["superheroes"][$i]["id"]));
+        }
         $this->renderHTML('..\views\ciudadano_view.php', $data);
     }
 }
