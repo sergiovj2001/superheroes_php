@@ -26,8 +26,8 @@ if (!isset($_SESSION["auth"])) {
     if ($route) {
         echo "adios";
     } else if (isset($_GET["nombre"])) {
-        $superheroe = new SuperHeroesController();
-        $superheroe->getSuperheroeAction($_GET["nombre"]);
+        $controller = new DefaultController();
+        $controller->getSuperheroeAction($_GET["nombre"]);
     // } else if (isset($_POST["nombre"])){
     
     }else {

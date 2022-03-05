@@ -7,7 +7,7 @@
     <title>Superheroes</title>
 </head>
 <body>
-    <h1>Bienvenido a Superheroes</h1>
+<h1>Bienvenido Superheroe</h1>
     <form action="register.php" method="POST">
         <label for="">Registro</label>
         <input type="text" name="usuario" value="" placeholder="Usuario">
@@ -36,8 +36,8 @@
             <th>imagen</th>
             <th>habilidades</th>
         </tr>
-        <?php
-         if (count($data["superheroes"]) > 1) {
+        <?php   
+        if (isset($data["superheroes"])) {
             foreach ($data["superheroes"] as $key => $value) {
                 echo '<tr>';
                 echo '<td>' . $value["nombre"] . '</td>';
@@ -54,18 +54,18 @@
             }
         }else {
                 echo '<tr>';
-                echo '<td>' . $data["superheroes"][0]["nombre"] . '</td>';
-                echo '<td>' . $data["superheroes"][0]['evolucion'] . '</td>';
-                echo '<td>' . $data["superheroes"][0]['imagen'] . '</td>';
-                foreach ($data["habilidades"] as $key => $value) {
-                    echo '<td>' . $data["habilidades"][$key]["nombre"] . '</td>';
-                }
+                echo '<td>' . $data[0]["nombre"] . '</td>';
+                echo '<td>' . $data[0]['evolucion'] . '</td>';
+                echo '<td>' . $data[0]['imagen'] . '</td>';
+                 echo '<td>' . $data[0]["habilidades"]["nombre"] . '</td>';
                 echo '<td>';
                 //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/edit/' . $value['id'] . '"> Edit</a>';
                 //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/del/' . $value['id'] . '"> Del</a>';
                 echo '</td>';
                 echo '</tr>';
             }
+    
+ 
         ?>
     </table>
 </body>

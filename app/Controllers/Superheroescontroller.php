@@ -23,7 +23,7 @@ class SuperHeroesController extends BaseController {
         $data["superheroes"] = $superheroe->getByNombre($nombre);
         $data["habilidades"] = [];
         array_push($data['habilidades'] ,$this->superpoder($data["superheroes"][0]["id"]));
-        $this->renderHTML('..\views\index_view.php', $data);
+        $this->renderHTML('..\views\superheroe_view.php', $data);
     }
     public function indexAction() {
         $data = [];
