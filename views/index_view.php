@@ -47,23 +47,35 @@
              echo "<th>imagen</th>";
              echo "<th>habilidades</th>";
          echo "</tr>";        
-
-     foreach ($data["superheroes"] as $key => $value) {
-         echo '<tr>';
-         echo '<td>' . $value["nombre"] . '</td>';
-         echo '<td>' . $value['evolucion'] . '</td>';
-         echo '<td>' . $value['imagen'] . '</td>';
-         foreach ($data["habilidades"][0] as $clave => $valor) {
-             if ($value["id"] == $valor["id_superheroe"]) {
-                 echo '<td>' . $valor["nombre"] . '</td>';
-             }
-         }
-         echo '<td>';
-         //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/edit/' . $value['id'] . '"> Edit</a>';
-         //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/del/' . $value['id'] . '"> Del</a>';
-         echo '</td>';
-         echo '</tr>';
-     }
+        if (isset($data["superheroes"])) {
+            foreach ($data["superheroes"] as $key => $value) {
+                echo '<tr>';
+                echo '<td>' . $value["nombre"] . '</td>';
+                echo '<td>' . $value['evolucion'] . '</td>';
+                echo '<td>' . $value['imagen'] . '</td>';
+                foreach ($data["habilidades"][0] as $clave => $valor) {
+                    if ($value["id"] == $valor["id_superheroe"]) {
+                        echo '<td>' . $valor["nombre"] . '</td>';
+                    }
+                }
+                echo '<td>';
+                echo '</td>';
+                echo '</tr>';
+            }
+        }else {
+                echo '<tr>';
+                echo '<td>' . $data[0]["nombre"] . '</td>';
+                echo '<td>' . $data[0]['evolucion'] . '</td>';
+                echo '<td>' . $data[0]['imagen'] . '</td>';
+                var_dump($data);
+                 echo '<td>' . $data[0]["habilidades"]["nombre"] . '</td>';
+                echo '<td>';
+                //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/edit/' . $value['id'] . '"> Edit</a>';
+                //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/del/' . $value['id'] . '"> Del</a>';
+                echo '</td>';
+                echo '</tr>';
+            }
+    
  
         ?>
     </table>
