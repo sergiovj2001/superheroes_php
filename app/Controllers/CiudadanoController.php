@@ -26,6 +26,12 @@ class CiudadanoController extends BaseController {
         }
         $this->renderHTML('..\views\ciudadano_view.php', $data);
     }
+    public function getSuperheroeAction($nombre) {
+        $superheroe = new Superheroe();
+        $data["superheroes"] = $superheroe->getByNombre($nombre);
+        $data["habilidades"] = $this->superpoder($data["superheroes"][0]["id"]);
+        $this->renderHTML('..\views\busqueda_view.php', $data);
+    }
 }
 
 

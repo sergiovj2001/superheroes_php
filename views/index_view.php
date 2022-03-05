@@ -36,20 +36,35 @@
             <th>Nombre</th>
             <th>evolucion</th>
             <th>imagen</th>
+            <th>habilidades</th>
         </tr>
         <?php
-        
-            foreach ($data as $key => $value) {
-                echo '<tr>';
-                echo '<td>' . $value['nombre'] . '</td>';
-                echo '<td>' . $value['evolucion'] . '</td>';
-                echo '<td>' . $value['imagen'] . '</td>';
-                echo '<td>';
-                //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/edit/' . $value['id'] . '"> Edit</a>';
-                //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/del/' . $value['id'] . '"> Del</a>';
-                echo '</td>';
-                echo '</tr>';
-            }
+         echo "<table>";
+                
+         echo "<tr>";
+             echo"<th>Nombre</th>";
+             echo "<th>evolucion</th>";
+             echo "<th>imagen</th>";
+             echo "<th>habilidades</th>";
+         echo "</tr>";        
+
+     foreach ($data["superheroes"] as $key => $value) {
+         echo '<tr>';
+         echo '<td>' . $value["nombre"] . '</td>';
+         echo '<td>' . $value['evolucion'] . '</td>';
+         echo '<td>' . $value['imagen'] . '</td>';
+         foreach ($data["habilidades"][0] as $clave => $valor) {
+             if ($value["id"] == $valor["id_superheroe"]) {
+                 echo '<td>' . $valor["nombre"] . '</td>';
+             }
+         }
+         echo '<td>';
+         //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/edit/' . $value['id'] . '"> Edit</a>';
+         //echo '<a href="' . DIRPUBLIC . '/index.php/superheroes/del/' . $value['id'] . '"> Del</a>';
+         echo '</td>';
+         echo '</tr>';
+     }
+ 
         ?>
     </table>
 </body>

@@ -26,7 +26,11 @@ if (isset($_SESSION["auth"])) {
     } else if (isset($_POST["titulo"])) {
         $peticion = new PeticionController();
         $peticion->crearPeticionAction($_POST["titulo"], $_POST["descripcion"]);
-    }else {
+    } else if (isset($_GET["nombre"])) {
+        $ciudadano = new CiudadanoController();
+        $ciudadano->getSuperheroeAction($_GET["nombre"]);
+    }
+    else {
         $ciudadano = new CiudadanoController();
         $ciudadano->indexAction();
     }

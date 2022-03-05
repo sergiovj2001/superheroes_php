@@ -15,10 +15,10 @@ class PeticionController extends BaseController {
     }
     public function crearPeticionAction($titulo,$descripcion){
         $peticion = new Peticion();
-        echo $titulo;
-        echo $descripcion;
+        $data = [];
         $peticion->set(["titulo"=>$titulo,"descripcion"=>$descripcion]);
-        $this->renderHTML('..\views\ciudadano_view.php',"peticion realizada");
+        $data[0] = "Petición creada correctamente";
+        $this->renderHTML('..\views\ciudadano_view.php', $data);
     }
 }
 ?>

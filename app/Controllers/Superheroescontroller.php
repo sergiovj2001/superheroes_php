@@ -10,10 +10,26 @@ namespace App\Controllers;
 
 use App\Models\Superheroe;
 class SuperHeroesController extends BaseController {
+    private function getSuperheroes(){
+        return Superheroe::getInstancia()->getAll();
+    }
+
+    private function superpoder($id){
+        return Superheroe::getInstancia()->getSuperpoder($id);
+    }
     public function getSuperheroeAction($nombre) {
         $superheroe = new Superheroe();
         $data = $superheroe->getByNombre($nombre);
         $this->renderHTML('..\views\index_view.php', $data);
+    }
+    public function indexAction() {
+        $data = [];
+        $data["superheroes"] = $this->getSuperheroes();
+        $data["habilidades"] = [];
+        for ($i=0; $i <count($data["superheroes"]) ; $i++) {
+            array_push($data['habilidades'] ,$this->superpoder($data["superheroes"][$i]["id"]));
+        }
+        $this->renderHTML('..\views\superheroe_view.php', $data);
     }
     
     public function addSuperHeroeAction() {
